@@ -2,8 +2,16 @@
 copy/base on pig... spring cloud + java 17
 
 
-## 
-JDK 17
+### 核心依赖
+
+| 依赖                   | 版本             |
+| ---------------------- |----------------|
+| Spring Boot            | 3.1.0          |
+| Spring Cloud           | 2022.0.3       |
+| Spring Cloud Alibaba   | 2022.0.0.0-RC2 |
+| Spring Authorization Server | 1.1.0          |
+| Mybatis Plus           | 3.5.3.1        |
+| hutool                 | 5.8.18         |
 
 ## 配置本地host
 

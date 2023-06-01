@@ -16,26 +16,22 @@
 
 package com.xiang.egg.admin;
 
-import com.pig4cloud.pig.common.feign.annotation.EnablePigFeignClients;
-import com.pig4cloud.pig.common.security.annotation.EnablePigResourceServer;
-import com.pig4cloud.pig.common.swagger.annotation.EnablePigDoc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author lengleng
  * @date 2018年06月21日 用户统一管理系统
  */
-@EnablePigDoc("admin")
-@EnablePigResourceServer
-@EnablePigFeignClients
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 public class PigAdminApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PigAdminApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PigAdminApplication.class, args);
+    }
 
 }

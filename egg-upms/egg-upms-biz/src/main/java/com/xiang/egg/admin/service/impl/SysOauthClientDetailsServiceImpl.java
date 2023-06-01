@@ -18,9 +18,9 @@ package com.xiang.egg.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiang.egg.admin.api.entity.SysOauthClientDetails;
-import com.pig4cloud.pig.admin.mapper.SysOauthClientDetailsMapper;
-import com.pig4cloud.pig.admin.service.SysOauthClientDetailsService;
-import com.pig4cloud.pig.common.core.constant.CacheConstants;
+import com.xiang.egg.admin.mapper.SysOauthClientDetailsMapper;
+import com.xiang.egg.admin.service.SysOauthClientDetailsService;
+import com.xiang.egg.common.core.constant.CacheConstants;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 

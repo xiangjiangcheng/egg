@@ -20,10 +20,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiang.egg.admin.api.entity.SysOauthClientDetails;
-import com.pig4cloud.pig.admin.service.SysOauthClientDetailsService;
-import com.pig4cloud.pig.common.core.util.R;
-import com.pig4cloud.pig.common.log.annotation.SysLog;
-import com.pig4cloud.pig.common.security.annotation.Inner;
+import com.xiang.egg.admin.service.SysOauthClientDetailsService;
+import com.xiang.egg.common.core.model.R;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -79,7 +77,7 @@ public class OauthClientDetailsController {
 	 * @param sysOauthClientDetails 实体
 	 * @return success/false
 	 */
-	@SysLog("添加终端")
+	// @SysLog("添加终端")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys_client_add')")
 	public R<Boolean> add(@Valid @RequestBody SysOauthClientDetails sysOauthClientDetails) {
@@ -91,7 +89,7 @@ public class OauthClientDetailsController {
 	 * @param id ID
 	 * @return success/false
 	 */
-	@SysLog("删除终端")
+	// @SysLog("删除终端")
 	@DeleteMapping("/{id}")
 	@PreAuthorize("@pms.hasPermission('sys_client_del')")
 	public R<Boolean> removeById(@PathVariable String id) {
@@ -103,14 +101,14 @@ public class OauthClientDetailsController {
 	 * @param sysOauthClientDetails 实体
 	 * @return success/false
 	 */
-	@SysLog("编辑终端")
+	// @SysLog("编辑终端")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys_client_edit')")
 	public R<Boolean> update(@Valid @RequestBody SysOauthClientDetails sysOauthClientDetails) {
 		return R.ok(sysOauthClientDetailsService.updateClientDetailsById(sysOauthClientDetails));
 	}
 
-	@SysLog("清除终端缓存")
+	// @SysLog("清除终端缓存")
 	@DeleteMapping("/cache")
 	@PreAuthorize("@pms.hasPermission('sys_client_del')")
 	public R clearClientCache() {
@@ -118,7 +116,7 @@ public class OauthClientDetailsController {
 		return R.ok();
 	}
 
-	@Inner
+	// @Inner
 	@GetMapping("/getClientDetailsById/{clientId}")
 	public R getClientDetailsById(@PathVariable String clientId) {
 		return R.ok(sysOauthClientDetailsService.getOne(

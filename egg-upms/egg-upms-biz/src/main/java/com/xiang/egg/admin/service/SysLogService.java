@@ -18,7 +18,7 @@ package com.xiang.egg.admin.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.pig4cloud.pig.admin.api.dto.SysLogDTO;
+import com.xiang.egg.admin.api.dto.SysLogDTO;
 import com.xiang.egg.admin.api.entity.SysLog;
 
 import java.util.List;

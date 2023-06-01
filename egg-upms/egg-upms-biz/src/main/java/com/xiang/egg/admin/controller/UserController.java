@@ -21,22 +21,19 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pig4cloud.pig.admin.api.dto.UserDTO;
-import com.pig4cloud.pig.admin.api.dto.UserInfo;
+import com.xiang.egg.admin.api.dto.UserDTO;
+import com.xiang.egg.admin.api.dto.UserInfo;
 import com.xiang.egg.admin.api.entity.SysUser;
-import com.pig4cloud.pig.admin.api.vo.UserExcelVO;
-import com.pig4cloud.pig.admin.api.vo.UserInfoVO;
-import com.pig4cloud.pig.admin.api.vo.UserVO;
-import com.pig4cloud.pig.admin.service.SysUserService;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
-import com.pig4cloud.pig.common.core.util.R;
-import com.pig4cloud.pig.common.log.annotation.SysLog;
-import com.pig4cloud.pig.common.security.annotation.Inner;
-import com.pig4cloud.pig.common.security.util.SecurityUtils;
-import com.pig4cloud.pig.common.xss.core.XssCleanIgnore;
+import com.xiang.egg.admin.api.vo.UserInfoVO;
+import com.xiang.egg.admin.api.vo.UserVO;
+import com.xiang.egg.admin.service.SysUserService;
+
+import com.xiang.egg.common.core.exception.ErrorCodes;
+import com.xiang.egg.common.core.model.R;
 import com.pig4cloud.plugin.excel.annotation.RequestExcel;
 import com.pig4cloud.plugin.excel.annotation.ResponseExcel;
+import com.xiang.egg.common.core.util.MsgUtils;
+import com.xiang.egg.common.security.util.SecurityUtils;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -85,7 +82,7 @@ public class UserController {
 	 * 获取指定用户全部信息
 	 * @return 用户信息
 	 */
-	@Inner
+	// @Inner
 	@GetMapping("/info/{username}")
 	public R<UserInfo> info(@PathVariable String username) {
 		SysUser user = userService.getOne(Wrappers.<SysUser>query().lambda().eq(SysUser::getUsername, username));
@@ -100,7 +97,7 @@ public class UserController {
 	 * @param deptIds 部门id 集合
 	 * @return 用户 id 集合
 	 */
-	@Inner
+	// @Inner
 	@GetMapping("/ids")
 	public R<List<Long>> listUserIdByDeptIds(@RequestParam("deptIds") Set<Long> deptIds) {
 		return R.ok(userService.listUserIdByDeptIds(deptIds));
@@ -121,7 +118,7 @@ public class UserController {
 	 * @param userDTO 查询条件
 	 * @return
 	 */
-	@Inner(false)
+	// @Inner(false)
 	@GetMapping("/check/exsit")
 	public R<Boolean> isExsit(UserDTO userDTO) {
 		List<SysUser> sysUserList = userService.list(new QueryWrapper<>(userDTO));
@@ -136,7 +133,7 @@ public class UserController {
 	 * @param id ID
 	 * @return R
 	 */
-	@SysLog("删除用户信息")
+	// @SysLog("删除用户信息")
 	@DeleteMapping("/{id:\\d+}")
 	@PreAuthorize("@pms.hasPermission('sys_user_del')")
 	public R<Boolean> userDel(@PathVariable Long id) {
@@ -149,9 +146,9 @@ public class UserController {
 	 * @param userDto 用户信息
 	 * @return success/false
 	 */
-	@SysLog("添加用户")
+	// @SysLog("添加用户")
 	@PostMapping
-	@XssCleanIgnore({ "password" })
+	// @XssCleanIgnore({ "password" })
 	@PreAuthorize("@pms.hasPermission('sys_user_add')")
 	public R<Boolean> user(@RequestBody UserDTO userDto) {
 		return R.ok(userService.saveUser(userDto));
@@ -162,9 +159,9 @@ public class UserController {
 	 * @param userDto 用户信息
 	 * @return R
 	 */
-	@SysLog("更新用户信息")
+	// @SysLog("更新用户信息")
 	@PutMapping
-	@XssCleanIgnore({ "password" })
+	// @XssCleanIgnore({ "password" })
 	@PreAuthorize("@pms.hasPermission('sys_user_edit')")
 	public R<Boolean> updateUser(@Valid @RequestBody UserDTO userDto) {
 		return userService.updateUser(userDto);
@@ -186,28 +183,28 @@ public class UserController {
 	 * @param userDto userDto
 	 * @return success/false
 	 */
-	@SysLog("修改个人信息")
-	@PutMapping("/edit")
-	@XssCleanIgnore({ "password", "newpassword1" })
-	public R<Boolean> updateUserInfo(@Valid @RequestBody UserDTO userDto) {
+	// @SysLog("修改个人信息")
+	// @PutMapping("/edit")
+	// @XssCleanIgnore({ "password", "newpassword1" })
+	/*public R<Boolean> updateUserInfo(@Valid @RequestBody UserDTO userDto) {
 		userDto.setUsername(SecurityUtils.getUser().getUsername());
 		return userService.updateUserInfo(userDto);
 	}
 
-	/**
+	*//**
 	 * @param username 用户名称
 	 * @return 上级部门用户列表
-	 */
+	 *//*
 	@GetMapping("/ancestor/{username}")
 	public R<List<SysUser>> listAncestorUsers(@PathVariable String username) {
 		return R.ok(userService.listAncestorUsersByUsername(username));
 	}
 
-	/**
+	*//**
 	 * 导出excel 表格
 	 * @param userDTO 查询条件
 	 * @return
-	 */
+	 *//*
 	@ResponseExcel
 	@GetMapping("/export")
 	@PreAuthorize("@pms.hasPermission('sys_user_import_export')")
@@ -215,16 +212,16 @@ public class UserController {
 		return userService.listUser(userDTO);
 	}
 
-	/**
+	*//**
 	 * 导入用户
 	 * @param excelVOList 用户列表
 	 * @param bindingResult 错误信息列表
 	 * @return R
-	 */
+	 *//*
 	@PostMapping("/import")
 	@PreAuthorize("@pms.hasPermission('sys_user_import_export')")
 	public R importUser(@RequestExcel List<UserExcelVO> excelVOList, BindingResult bindingResult) {
 		return userService.importUser(excelVOList, bindingResult);
-	}
+	}*/
 
 }

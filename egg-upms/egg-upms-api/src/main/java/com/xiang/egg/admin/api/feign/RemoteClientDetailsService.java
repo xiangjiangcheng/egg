@@ -21,9 +21,9 @@ package com.xiang.egg.admin.api.feign;
 
 
 import com.xiang.egg.admin.api.entity.SysOauthClientDetails;
-import constant.SecurityConstants;
-import constant.ServiceNameConstants;
-import model.R;
+import com.xiang.egg.common.core.constant.SecurityConstants;
+import com.xiang.egg.common.core.constant.ServiceNameConstants;
+import com.xiang.egg.common.core.model.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

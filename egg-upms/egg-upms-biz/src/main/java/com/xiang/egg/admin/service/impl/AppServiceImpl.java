@@ -19,15 +19,15 @@ package com.xiang.egg.admin.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.pig4cloud.pig.admin.api.dto.AppSmsDTO;
+import com.xiang.egg.admin.api.dto.AppSmsDTO;
 import com.xiang.egg.admin.api.entity.SysUser;
-import com.pig4cloud.pig.admin.mapper.SysUserMapper;
-import com.pig4cloud.pig.admin.service.AppService;
-import com.pig4cloud.pig.common.core.constant.CacheConstants;
-import com.pig4cloud.pig.common.core.constant.SecurityConstants;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
-import com.pig4cloud.pig.common.core.util.R;
+import com.xiang.egg.admin.mapper.SysUserMapper;
+import com.xiang.egg.admin.service.AppService;
+import com.xiang.egg.common.core.constant.CacheConstants;
+import com.xiang.egg.common.core.constant.SecurityConstants;
+import com.xiang.egg.common.core.exception.ErrorCodes;
+import com.xiang.egg.common.core.model.R;
+import com.xiang.egg.common.core.util.MsgUtils;
 import io.springboot.sms.core.SmsClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,8 +76,7 @@ public class AppServiceImpl implements AppService {
 
 		String code = RandomUtil.randomNumbers(Integer.parseInt(SecurityConstants.CODE_SIZE));
 		log.info("手机号生成验证码成功:{},{}", sms.getPhone(), code);
-		redisTemplate.opsForValue()
-			.set(CacheConstants.DEFAULT_CODE_KEY + sms.getPhone(), code, SecurityConstants.CODE_TIME, TimeUnit.SECONDS);
+		redisTemplate.opsForValue().set(CacheConstants.DEFAULT_CODE_KEY + sms.getPhone(), code, SecurityConstants.CODE_TIME, TimeUnit.SECONDS);
 
 		// 调用短信通道发送
 		this.smsClient.sendCode(code, sms.getPhone());

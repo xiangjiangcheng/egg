@@ -18,13 +18,12 @@ package com.xiang.egg.admin.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiang.egg.admin.api.entity.SysDict;
 import com.xiang.egg.admin.api.entity.SysDictItem;
-import com.pig4cloud.pig.admin.mapper.SysDictItemMapper;
-import com.pig4cloud.pig.admin.service.SysDictItemService;
-import com.pig4cloud.pig.admin.service.SysDictService;
-import com.pig4cloud.pig.common.core.constant.CacheConstants;
-import com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
+import com.xiang.egg.admin.mapper.SysDictItemMapper;
+import com.xiang.egg.admin.service.SysDictItemService;
+import com.xiang.egg.admin.service.SysDictService;
+import com.xiang.egg.common.core.constant.CacheConstants;
+import com.xiang.egg.common.core.exception.ErrorCodes;
+import com.xiang.egg.common.core.util.MsgUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -54,7 +53,7 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
 		SysDictItem dictItem = this.getById(id);
 		SysDict dict = dictService.getById(dictItem.getDictId());
 		// 系统内置
-		Assert.state(!DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
+		Assert.state(!com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
 				MsgUtils.getMessage(ErrorCodes.SYS_DICT_DELETE_SYSTEM));
 		this.removeById(id);
 	}
@@ -70,7 +69,7 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
 		// 查询字典
 		SysDict dict = dictService.getById(item.getDictId());
 		// 系统内置
-		Assert.state(!DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
+		Assert.state(!com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
 				MsgUtils.getMessage(ErrorCodes.SYS_DICT_UPDATE_SYSTEM));
 		this.updateById(item);
 	}

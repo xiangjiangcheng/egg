@@ -19,13 +19,12 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiang.egg.admin.api.entity.SysDict;
 import com.xiang.egg.admin.api.entity.SysDictItem;
-import com.pig4cloud.pig.admin.mapper.SysDictItemMapper;
-import com.pig4cloud.pig.admin.mapper.SysDictMapper;
-import com.pig4cloud.pig.admin.service.SysDictService;
-import com.pig4cloud.pig.common.core.constant.CacheConstants;
-import com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
+import com.xiang.egg.admin.mapper.SysDictItemMapper;
+import com.xiang.egg.admin.mapper.SysDictMapper;
+import com.xiang.egg.admin.service.SysDictService;
+import com.xiang.egg.common.core.constant.CacheConstants;
+import com.xiang.egg.common.core.exception.ErrorCodes;
+import com.xiang.egg.common.core.util.MsgUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -55,7 +54,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	public void removeDict(Long id) {
 		SysDict dict = this.getById(id);
 		// 系统内置
-		Assert.state(!DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
+		Assert.state(!com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum.SYSTEM.getType().equals(dict.getSystemFlag()),
 				MsgUtils.getMessage(ErrorCodes.SYS_DICT_DELETE_SYSTEM));
 		baseMapper.deleteById(id);
 		dictItemMapper.delete(Wrappers.<SysDictItem>lambdaQuery().eq(SysDictItem::getDictId, id));
@@ -71,7 +70,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	public void updateDict(SysDict dict) {
 		SysDict sysDict = this.getById(dict.getId());
 		// 系统内置
-		Assert.state(!DictTypeEnum.SYSTEM.getType().equals(sysDict.getSystemFlag()),
+		Assert.state(!com.pig4cloud.pig.common.core.constant.enums.DictTypeEnum.SYSTEM.getType().equals(sysDict.getSystemFlag()),
 				MsgUtils.getMessage(ErrorCodes.SYS_DICT_UPDATE_SYSTEM));
 		this.updateById(dict);
 	}

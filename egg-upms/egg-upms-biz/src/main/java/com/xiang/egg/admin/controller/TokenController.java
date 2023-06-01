@@ -16,8 +16,7 @@
 
 package com.xiang.egg.admin.controller;
 
-import com.pig4cloud.pig.admin.api.feign.RemoteTokenService;
-import com.pig4cloud.pig.common.core.util.R;
+import com.xiang.egg.common.core.model.R;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -38,27 +37,27 @@ import java.util.Map;
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
 public class TokenController {
 
-	private final RemoteTokenService remoteTokenService;
-
-	/**
-	 * 分页token 信息
-	 * @param params 参数集
-	 * @return token集合
-	 */
-	@GetMapping("/page")
-	public R token(@RequestParam Map<String, Object> params) {
-		return remoteTokenService.getTokenPage(params);
-	}
-
-	/**
-	 * 删除
-	 * @param id ID
-	 * @return success/false
-	 */
-	@DeleteMapping("/{id}")
-	@PreAuthorize("@pms.hasPermission('sys_token_del')")
-	public R<Boolean> delete(@PathVariable String id) {
-		return remoteTokenService.removeToken(id);
-	}
+	// private final RemoteTokenService remoteTokenService;
+	//
+	// /**
+	//  * 分页token 信息
+	//  * @param params 参数集
+	//  * @return token集合
+	//  */
+	// @GetMapping("/page")
+	// public R token(@RequestParam Map<String, Object> params) {
+	// 	return remoteTokenService.getTokenPage(params);
+	// }
+	//
+	// /**
+	//  * 删除
+	//  * @param id ID
+	//  * @return success/false
+	//  */
+	// @DeleteMapping("/{id}")
+	// @PreAuthorize("@pms.hasPermission('sys_token_del')")
+	// public R<Boolean> delete(@PathVariable String id) {
+	// 	return remoteTokenService.removeToken(id);
+	// }
 
 }

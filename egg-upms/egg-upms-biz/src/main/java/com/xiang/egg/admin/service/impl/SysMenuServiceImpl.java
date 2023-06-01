@@ -25,14 +25,13 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiang.egg.admin.api.entity.SysMenu;
 import com.xiang.egg.admin.api.entity.SysRoleMenu;
-import com.pig4cloud.pig.admin.mapper.SysMenuMapper;
-import com.pig4cloud.pig.admin.mapper.SysRoleMenuMapper;
-import com.pig4cloud.pig.admin.service.SysMenuService;
-import com.pig4cloud.pig.common.core.constant.CacheConstants;
-import com.pig4cloud.pig.common.core.constant.CommonConstants;
-import com.pig4cloud.pig.common.core.constant.enums.MenuTypeEnum;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
+import com.xiang.egg.admin.mapper.SysMenuMapper;
+import com.xiang.egg.admin.mapper.SysRoleMenuMapper;
+import com.xiang.egg.admin.service.SysMenuService;
+import com.xiang.egg.common.core.constant.CacheConstants;
+import com.xiang.egg.common.core.constant.CommonConstants;
+import com.xiang.egg.common.core.exception.ErrorCodes;
+import com.xiang.egg.common.core.util.MsgUtils;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
@@ -132,7 +131,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 	@Override
 	public List<Tree<Long>> filterMenu(Set<SysMenu> all, Long parentId) {
 		List<TreeNode<Long>> collect = all.stream()
-			.filter(menu -> MenuTypeEnum.LEFT_MENU.getType().equals(menu.getType()))
+			.filter(menu -> com.pig4cloud.pig.common.core.constant.enums.MenuTypeEnum.LEFT_MENU.getType().equals(menu.getType()))
 			.filter(menu -> StrUtil.isNotBlank(menu.getPath()))
 			.map(getNodeFunction())
 			.collect(Collectors.toList());

@@ -22,10 +22,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.pig4cloud.pig.admin.api.dto.SysLogDTO;
+import com.xiang.egg.admin.api.dto.SysLogDTO;
 import com.xiang.egg.admin.api.entity.SysLog;
-import com.pig4cloud.pig.admin.mapper.SysLogMapper;
-import com.pig4cloud.pig.admin.service.SysLogService;
+import com.xiang.egg.admin.mapper.SysLogMapper;
+import com.xiang.egg.admin.service.SysLogService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

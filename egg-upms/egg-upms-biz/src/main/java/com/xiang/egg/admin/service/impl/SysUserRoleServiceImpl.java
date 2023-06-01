@@ -18,8 +18,8 @@ package com.xiang.egg.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiang.egg.admin.api.entity.SysUserRole;
-import com.pig4cloud.pig.admin.mapper.SysUserRoleMapper;
-import com.pig4cloud.pig.admin.service.SysUserRoleService;
+import com.xiang.egg.admin.mapper.SysUserRoleMapper;
+import com.xiang.egg.admin.service.SysUserRoleService;
 import org.springframework.stereotype.Service;
 
 /**

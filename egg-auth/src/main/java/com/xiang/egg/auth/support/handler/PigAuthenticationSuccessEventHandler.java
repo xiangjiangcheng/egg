@@ -16,12 +16,6 @@
 
 package com.xiang.egg.auth.support.handler;
 
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
-import com.xiang.egg.admin.api.entity.SysLog;
-import com.xiang.egg.security.service.PigUser;
-import constant.CommonConstants;
-import constant.SecurityConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;

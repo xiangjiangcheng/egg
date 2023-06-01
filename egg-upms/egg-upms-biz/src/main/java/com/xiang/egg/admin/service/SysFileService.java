@@ -19,7 +19,7 @@ package com.xiang.egg.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiang.egg.admin.api.entity.SysFile;
-import com.pig4cloud.pig.common.core.util.R;
+import com.xiang.egg.common.core.model.R;;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -19,7 +19,7 @@ package com.xiang.egg.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiang.egg.admin.api.entity.SysPublicParam;
-import com.pig4cloud.pig.common.core.util.R;
+import com.xiang.egg.common.core.model.R;;
 
 /**
  * 公共参数配置

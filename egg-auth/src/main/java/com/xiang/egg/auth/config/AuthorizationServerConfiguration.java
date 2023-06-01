@@ -17,9 +17,12 @@
 package com.xiang.egg.auth.config;
 
 
+import com.xiang.egg.auth.support.core.CustomeOAuth2TokenCustomizer;
 import com.xiang.egg.auth.support.handler.PigAuthenticationFailureEventHandler;
 import com.xiang.egg.auth.support.handler.PigAuthenticationSuccessEventHandler;
-import constant.SecurityConstants;
+import com.xiang.egg.auth.support.password.OAuth2ResourceOwnerPasswordAuthenticationConverter;
+import com.xiang.egg.auth.support.password.OAuth2ResourceOwnerPasswordAuthenticationProvider;
+import com.xiang.egg.common.core.constant.SecurityConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +35,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
+import org.springframework.security.oauth2.server.authorization.token.DelegatingOAuth2TokenGenerator;
+import org.springframework.security.oauth2.server.authorization.token.OAuth2AccessTokenGenerator;
+import org.springframework.security.oauth2.server.authorization.token.OAuth2RefreshTokenGenerator;
+import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
 import org.springframework.security.oauth2.server.authorization.web.authentication.*;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
@@ -86,15 +93,16 @@ public class AuthorizationServerConfiguration {
     /**
      * 令牌生成规则实现 </br>
      * client:username:uuid
+     *
      * @return OAuth2TokenGenerator
      */
-    // @Bean
-    // public OAuth2TokenGenerator oAuth2TokenGenerator() {
-    // 	CustomeOAuth2AccessTokenGenerator accessTokenGenerator = new CustomeOAuth2AccessTokenGenerator();
-    // 	// 注入Token 增加关联用户信息
-    // 	accessTokenGenerator.setAccessTokenCustomizer(new CustomeOAuth2TokenCustomizer());
-    // 	return new DelegatingOAuth2TokenGenerator(accessTokenGenerator, new OAuth2RefreshTokenGenerator());
-    // }
+    @Bean
+    public OAuth2TokenGenerator oAuth2TokenGenerator() {
+        OAuth2AccessTokenGenerator accessTokenGenerator = new OAuth2AccessTokenGenerator();
+        // 注入Token 增加关联用户信息
+        accessTokenGenerator.setAccessTokenCustomizer(new CustomeOAuth2TokenCustomizer());
+        return new DelegatingOAuth2TokenGenerator(accessTokenGenerator, new OAuth2RefreshTokenGenerator());
+    }
 
     /**
      * request -> xToken 注入请求转换器
@@ -103,7 +111,7 @@ public class AuthorizationServerConfiguration {
      */
     private AuthenticationConverter accessTokenRequestConverter() {
         return new DelegatingAuthenticationConverter(Arrays.asList(
-                // new OAuth2ResourceOwnerPasswordAuthenticationConverter(),
+                new OAuth2ResourceOwnerPasswordAuthenticationConverter(),
                 // new OAuth2ResourceOwnerSmsAuthenticationConverter(),
                 new OAuth2RefreshTokenAuthenticationConverter(),
                 new OAuth2ClientCredentialsAuthenticationConverter(),
@@ -122,8 +130,8 @@ public class AuthorizationServerConfiguration {
         AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
         OAuth2AuthorizationService authorizationService = http.getSharedObject(OAuth2AuthorizationService.class);
 
-        // OAuth2ResourceOwnerPasswordAuthenticationProvider resourceOwnerPasswordAuthenticationProvider = new OAuth2ResourceOwnerPasswordAuthenticationProvider(
-        // 		authenticationManager, authorizationService, oAuth2TokenGenerator());
+        OAuth2ResourceOwnerPasswordAuthenticationProvider resourceOwnerPasswordAuthenticationProvider = new OAuth2ResourceOwnerPasswordAuthenticationProvider(
+                authenticationManager, authorizationService, oAuth2TokenGenerator());
         //
         // OAuth2ResourceOwnerSmsAuthenticationProvider resourceOwnerSmsAuthenticationProvider = new OAuth2ResourceOwnerSmsAuthenticationProvider(
         // 		authenticationManager, authorizationService, oAuth2TokenGenerator());
@@ -131,7 +139,7 @@ public class AuthorizationServerConfiguration {
         // 处理 UsernamePasswordAuthenticationToken
         http.authenticationProvider(new DaoAuthenticationProvider());
         // 处理 OAuth2ResourceOwnerPasswordAuthenticationToken
-        // http.authenticationProvider(resourceOwnerPasswordAuthenticationProvider);
+        http.authenticationProvider(resourceOwnerPasswordAuthenticationProvider);
         // 处理 OAuth2ResourceOwnerSmsAuthenticationToken
         // http.authenticationProvider(resourceOwnerSmsAuthenticationProvider);
     }

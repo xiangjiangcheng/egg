@@ -17,12 +17,12 @@
 package com.xiang.egg.auth.support.handler;
 
 import cn.hutool.core.util.StrUtil;
-import constant.SecurityConstants;
+import com.xiang.egg.common.core.constant.SecurityConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import model.R;
+import com.xiang.egg.common.core.model.R;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;

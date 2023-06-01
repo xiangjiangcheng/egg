@@ -18,8 +18,8 @@ package com.xiang.egg.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiang.egg.admin.api.entity.SysRole;
-import com.pig4cloud.pig.admin.api.vo.RoleExcelVO;
-import com.pig4cloud.pig.common.core.util.R;
+import com.xiang.egg.admin.api.vo.RoleExcelVO;
+import com.xiang.egg.common.core.model.R;;
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
