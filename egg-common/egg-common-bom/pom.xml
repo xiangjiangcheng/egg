@@ -39,12 +39,27 @@
     <!-- 定义全局jar版本,模块使用需要再次引入但不用写版本号-->
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>
-                <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-common-core</artifactId>
-                <version>${pig.common.version}</version>
+            <dependency>
+                <groupId>com.xiang</groupId>
+                <artifactId>egg-common-core</artifactId>
+                <version>${egg.common.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.xiang</groupId>
+                <artifactId>egg-common-security</artifactId>
+                <version>${egg.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiang</groupId>
+                <artifactId>egg-common-swagger</artifactId>
+                <version>${egg.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiang</groupId>
+                <artifactId>egg-common-mybatis</artifactId>
+                <version>${egg.common.version}</version>
+            </dependency>
+            <!--<dependency>
                 <groupId>com.pig4cloud</groupId>
                 <artifactId>pig-common-datasource</artifactId>
                 <version>${pig.common.version}</version>
@@ -59,16 +74,7 @@
                 <artifactId>pig-common-log</artifactId>
                 <version>${pig.common.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-common-mybatis</artifactId>
-                <version>${pig.common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-common-security</artifactId>
-                <version>${pig.common.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.pig4cloud</groupId>
                 <artifactId>pig-common-feign</artifactId>
@@ -76,24 +82,19 @@
             </dependency>
             <dependency>
                 <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-common-swagger</artifactId>
-                <version>${pig.common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.pig4cloud</groupId>
                 <artifactId>pig-common-xss</artifactId>
                 <version>${pig.common.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
-                <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-upms-api</artifactId>
-                <version>${pig.common.version}</version>
+                <groupId>com.xiang</groupId>
+                <artifactId>egg-upms-api</artifactId>
+                <version>${egg.common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.version}</version>
-            </dependency>-->
+            </dependency>
             <!--springdoc -->
             <dependency>
                 <groupId>org.springdoc</groupId>

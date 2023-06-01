@@ -1,4 +1,4 @@
-package com.xiang.gateway;
+package com.xiang.egg.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

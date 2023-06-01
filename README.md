@@ -41,3 +41,10 @@ http://pig-register:8848/
 
 ## 查阅资料
 https://www.jianshu.com/p/c4952ef14660
+
+```lua
+1.Spring Authorization Server
+官方主页：https://spring.io/projects/spring-authorization-server
+https://blog.csdn.net/qq_31772441/article/details/126092213
+
+```

@@ -10,8 +10,9 @@
     <modules>
         <module>egg-common</module>
         <module>egg-register</module>
-<!--        <module>egg-auth</module>-->
+        <module>egg-auth</module>
         <module>egg-gateway</module>
+        <module>egg-upms</module>
     </modules>
     <name>${project.artifactId}</name>
 

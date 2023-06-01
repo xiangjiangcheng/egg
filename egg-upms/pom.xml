@@ -8,17 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>egg-common</artifactId>
-    <name>${project.artifactId}</name>
-    <packaging>pom</packaging>
-    <description>公共聚合模块</description>
 
+    <artifactId>egg-upms</artifactId>
+    <packaging>pom</packaging>
     <modules>
-        <module>egg-common-bom</module>
-        <module>egg-common-core</module>
-        <module>egg-common-security</module>
-        <module>egg-common-swagger</module>
-        <module>egg-common-mybatis</module>
+        <module>egg-upms-api</module>
+        <module>egg-upms-biz</module>
     </modules>
+
 
 </project>
