@@ -38,13 +38,17 @@ http://pig-register:8848/
 ```
 2..引入Nacos
 
+```
 服务注册中心
+```
 
 3.. 引入网关gateway
 
 4.. 引入spring security oauth2
 
+```
 统一授权
+```
 
 
 ## 查阅资料
@@ -53,6 +57,19 @@ https://www.jianshu.com/p/c4952ef14660
 ```lua
 1.Spring Authorization Server
 官方主页：https://spring.io/projects/spring-authorization-server
-https://blog.csdn.net/qq_31772441/article/details/126092213
+demo: https://blog.csdn.net/qq_31772441/article/details/126092213
+
+```
+
+## issue
+point:
+```lua
+1. 自定义starter,自动配置 -
+2. @EnableFeignClients 指定最大的扫描路径, 否则会找不到实现类
+```
+
+## API
+```shell
+1. obtain token: pig-gateway:9999/auth/oauth2/token?grant_type=password&scope=server&username=admin&password=YehdBPev
 
 ```

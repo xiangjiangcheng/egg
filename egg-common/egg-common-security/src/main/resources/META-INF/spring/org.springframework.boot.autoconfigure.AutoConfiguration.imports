@@ -1,0 +1,3 @@
+com.xiang.egg.common.security.service.PigRedisOAuth2AuthorizationService
+com.xiang.egg.common.security.service.PigRemoteRegisteredClientRepository
+com.xiang.egg.common.security.component.PigSecurityMessageSourceConfiguration

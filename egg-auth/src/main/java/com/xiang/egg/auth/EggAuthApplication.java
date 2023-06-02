@@ -10,9 +10,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *
  * @author Xiang JiangCheng
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.xiang.egg")
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = "com.xiang")
+@SpringBootApplication
 public class EggAuthApplication {
 
     public static void main(String[] args) {

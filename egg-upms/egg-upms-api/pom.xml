@@ -20,10 +20,15 @@
             <artifactId>egg-common-core</artifactId>
         </dependency>
         <!--feign 注解依赖-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <optional>true</optional>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <!--mybatis 依赖-->
         <dependency>
